@@ -124,7 +124,7 @@ public class BackgroundDownload extends CordovaPlugin {
             this.timerProgressUpdate = TimerProgressUpdate;
         };
     }
-    
+
     HashMap<String, Download> activDownloads = new HashMap<String, Download>();
 
     @Override
@@ -171,15 +171,15 @@ public class BackgroundDownload extends CordovaPlugin {
 
             DownloadManager mgr = (DownloadManager) this.cordova.getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(source);
-            request.setTitle("org.apache.cordova.backgroundDownload plugin");
+            request.setTitle("Francoli: download mappe");
             request.setVisibleInDownloadsUi(false);
 
             // hide notification. Not compatible with current android api.
             // request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
 
-            // we use default settings for roaming and network type
-            // request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-            // request.setAllowedOverRoaming(false);
+            // we allow only WIFI download and no roaming
+            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
+            request.setAllowedOverRoaming(false);
 
             request.setDestinationUri(Uri.parse(curDownload.getTempFilePath()));
 
